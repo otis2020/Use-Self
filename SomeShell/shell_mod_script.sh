@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 set -e
 
-if [ ! -f "/root/.ssh/id_rsa" ]; then
-    echo "未检查到仓库密钥，复制密钥"
-    cp /scripts/logs/id_rsa /root/.ssh/id_rsa
-    chmod 600 /root/.ssh/id_rsa
-    ssh-keyscan github.com > /root/.ssh/known_hosts
-fi
+
+echo "复制密钥"
+rm /root/.ssh/id_rsa
+cp /scripts/logs/id_rsa /root/.ssh/id_rsa
+chmod 600 /root/.ssh/id_rsa
+ssh-keyscan github.com > /root/.ssh/known_hosts
+
 
 
 echo "附加功能1，自定义仓库和任务"
